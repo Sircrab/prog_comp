@@ -12,7 +12,7 @@ typedef pair<int, int> ii;
 
 int inf = 1e9;
 
-vector<int>* djikstra(vector<vector<ii> >& vec, int start, int dest) {
+vector<int>& djikstra(vector<vector<ii> >& vec, int start, int dest) {
 	//int inf = 1e9;
 	priority_queue<ii, vector<ii >, greater<ii> > pq;
 	int N = vec.size();
@@ -32,14 +32,14 @@ vector<int>* djikstra(vector<vector<ii> >& vec, int start, int dest) {
 			}
 		}
 	}
-	return dist;
+	return *dist;
 
 }
 
 void testOneNodeGraph() {
 	//Test case with 1 node, expected value: 0, since start node is the same as destination
 	vector<vector<ii> > AL(1, vector<ii>());
-	vector<int> res = *djikstra(AL, 0, 0);
+	vector<int> res = djikstra(AL, 0, 0);
 	assert(res.size() == 1);
 	assert(res[0] == 0);
 }
@@ -63,7 +63,7 @@ void testNormalGraph() {
 	AL[2].push_back(mp(3, 4));
 	AL[2].push_back(mp(4, 6));
 	AL[4].push_back(mp(3, 1));
-	vector<int> res = *djikstra(AL, 0, 3);
+	vector<int> res = djikstra(AL, 0, 3);
 	assert(res.size() == 5);
 	assert(res[0] == 0);
 	assert(res[3] == 8);
@@ -84,7 +84,7 @@ void testConnectedComponentGraph() {
 	AL[3].push_back(mp(4, 2));
 	AL[4].push_back(mp(5, 3));
 	AL[5].push_back(mp(3, 1));
-	vector<int> res = *djikstra(AL, 0, 3);
+	vector<int> res = djikstra(AL, 0, 3);
 	assert(res.size() == 6);
 	assert(res[0] == 0);
 	assert(res[3] == inf);
@@ -106,7 +106,7 @@ int main() {
 	}
 	int start, dest;
 	scanf("%d %d", &start, &dest);
-	printf("%d\n", (*djikstra(AL, start, dest))[dest]);
+	printf("%d\n", (djikstra(AL, start, dest))[dest]);
 
 }
 
