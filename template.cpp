@@ -2,7 +2,7 @@
 using namespace std;
 
 #define REP(i, j, k) for (int (i)=(j); (i)<(k); ++(i))
-#define correct(x, y, n, m) (0 <= (x) && (x) < (n) && 0 <= (y) && (y) <= (m))
+#define correct(x, y, n, m) (0 <= (x) && (x) < (n) && 0 <= (y) && (y) < (m))
 #define all(a) (a).begin(), (a).end()
 #define sz(a) int((a).size())
 #define pb(a) push_back(a)
